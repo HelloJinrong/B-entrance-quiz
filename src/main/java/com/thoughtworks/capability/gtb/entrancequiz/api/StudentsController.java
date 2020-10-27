@@ -1,6 +1,7 @@
 package com.thoughtworks.capability.gtb.entrancequiz.api;
 
 
+import com.thoughtworks.capability.gtb.entrancequiz.domain.Group;
 import com.thoughtworks.capability.gtb.entrancequiz.domain.Students;
 import com.thoughtworks.capability.gtb.entrancequiz.service.StudentsService;
 import org.springframework.http.ResponseEntity;
@@ -23,4 +24,12 @@ public class StudentsController {
     public ResponseEntity<List<Students>> getStudent() {
         return studentsService.getStudents();
     }
+
+    @GetMapping("/groups")
+    @CrossOrigin
+    public ResponseEntity<List<Group>> getGroups() {
+        return studentsService.getGroups();
+    }
+
+
 }
