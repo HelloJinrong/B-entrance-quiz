@@ -5,9 +5,7 @@ import com.thoughtworks.capability.gtb.entrancequiz.domain.Group;
 import com.thoughtworks.capability.gtb.entrancequiz.domain.Students;
 import com.thoughtworks.capability.gtb.entrancequiz.service.StudentsService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,6 +27,12 @@ public class StudentsController {
     @CrossOrigin
     public ResponseEntity<List<Group>> getGroups() {
         return studentsService.getGroups();
+    }
+
+    @PostMapping("/students")
+    @CrossOrigin
+    public ResponseEntity addStudent(@RequestBody Students students) {
+        return studentsService.addStudents(students);
     }
 
 

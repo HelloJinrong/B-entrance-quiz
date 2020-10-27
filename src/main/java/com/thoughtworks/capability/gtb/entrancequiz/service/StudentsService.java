@@ -6,9 +6,7 @@ import com.thoughtworks.capability.gtb.entrancequiz.domain.Students;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -40,14 +38,6 @@ public class StudentsService {
         int GroupSize = studentsList.size()/6;
         int restNum = studentsList.size()%6;
         initGroup();
-        int total = 0;
-        /*for(int i=0;i<restNum;i++)
-        {
-            List<Students> tmp = new ArrayList<>();
-            tmp.add(studentsList.get(GroupSize*6 +i));
-            Group temp = new Group("team " + (i + 1), tmp);
-            groupList.add(temp);
-        }*/
         for (int i = 0; i < 6; i++) {
             boolean flag=true;
             List<Students> tmp = new ArrayList<>();
@@ -67,6 +57,13 @@ public class StudentsService {
 
         }
         return ResponseEntity.ok(groupList);
+    }
+
+    public ResponseEntity addStudents(Students newstudent){
+        Students students = new Students(studentNum + 1, newstudent.getName());
+        studentNum++;
+        studentsList.add(students);
+        return ResponseEntity.ok().build();
     }
 
 }
