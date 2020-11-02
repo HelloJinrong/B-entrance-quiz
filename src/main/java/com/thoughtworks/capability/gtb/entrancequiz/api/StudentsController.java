@@ -18,6 +18,7 @@ public class StudentsController {
     }
 
     @GetMapping("/students")
+    // TODO GTB-知识点: - @CrossOrigin可以放在类上
     @CrossOrigin
     public ResponseEntity<List<Students>> getStudent() {
         return studentsService.getStudents();
@@ -31,6 +32,8 @@ public class StudentsController {
 
     @PostMapping("/students")
     @CrossOrigin
+    // TODO GTB-知识点: - 没有使用泛型
+    // TODO GTB-知识点: - 违反Restful实践, Post请求成功后应该返回201
     public ResponseEntity addStudent(@RequestBody Students students) {
         return studentsService.addStudents(students);
     }

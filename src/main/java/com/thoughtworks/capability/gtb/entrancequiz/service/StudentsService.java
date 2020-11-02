@@ -12,19 +12,26 @@ import java.util.List;
 
 @Service
 public class StudentsService {
+    // TODO GTB-工程实践: - 违反了封装性，字段应该使用private
+    // TODO GTB-工程实践: - 为啥要使用三个List保存学生？
     List<Students> studentsList=init() ;
     List<Students> newStudentsList = new ArrayList();
+    // TODO GTB-工程实践: - 变量名不符合命名规范，首字母应该小写
     List<Students> AllStudentsList;
     List<Group> groupList;
+    // TODO GTB-工程实践: - 应该使用常量
     int studentNum=15;
 
 
     private List<Students> init(){
+        // TODO GTB-知识点: - 应该使用Repository层保存数据
+        // TODO GTB-工程实践: - 变量命名不表意
         List<Students> temp=new ArrayList<>();
         String[] studentsName = {
                 "成吉思汗", "鲁班七号", "太乙真人", "钟无艳", "花木兰", "雅典娜", "芈月", "白起", "刘婵",
                 "庄周", "马超", "刘备", "哪吒", "大乔", "蔡文姬"
         };
+        // TODO GTB-知识点: - 可以使用Java8 Stream简化代码
         for (int i = 0; i < 15; i++) {
             Students students = new Students(i + 1, studentsName[i]);
             temp.add(students);
@@ -32,6 +39,7 @@ public class StudentsService {
         return temp;
     }
 
+    // TODO GTB-知识点: - ResponseEntity不应该侵入到Service层
     public ResponseEntity<List<Students>> getStudents() {
         AllStudentsList = new ArrayList();
         AllStudentsList.addAll(studentsList);
@@ -42,9 +50,14 @@ public class StudentsService {
     private void initGroup(){
         groupList = new ArrayList<>();
     }
+
+    // TODO GTB-工程实践: - 长方法，建议抽子方法来提高可读性
+    // TODO GTB-知识点: - 分组算法略显复杂，可以想想有没有更简单的方法
     public ResponseEntity<List<Group>> getGroups() {
 
         Collections.shuffle(AllStudentsList);
+        // TODO GTB-工程实践: - Magic Number
+        // TODO GTB-工程实践: - 注意代码风格，需要适当的添加空格
         int GroupSize = AllStudentsList.size()/6;
         int restNum = AllStudentsList.size()%6;
         initGroup();
